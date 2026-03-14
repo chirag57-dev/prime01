@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PashuAdhaar – Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body class="auth-body">
+  <div class="auth-wrapper">
+    <div class="auth-illustration">
+      <div class="auth-illustration-overlay"></div>
+      <div class="auth-illustration-content">
+        <div class="logo-badge">
+          <span class="logo-icon">🐄</span>
+        </div>
+        <h1>PashuAdhaar</h1>
+        <p>AI-powered animal identity and farm management dashboard for modern dairy operations.</p>
+        <ul class="auth-highlights">
+          <li><i class="fa-solid fa-shield-heart"></i> Secure livestock identity</li>
+          <li><i class="fa-solid fa-disease"></i> Health & vaccination overview</li>
+          <li><i class="fa-solid fa-chart-line"></i> Production insights & trends</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="auth-panel">
+      <div class="auth-panel-inner">
+        <div class="auth-header">
+          <h2>Welcome back 👋</h2>
+          <p>Log in to manage your farm dashboard.</p>
+        </div>
+
+        <form id="login-form" class="auth-form">
+          <div class="form-group">
+            <label for="login-mobile">Mobile Number</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+              <input
+                type="tel"
+                id="login-mobile"
+                name="mobile"
+                placeholder="10-digit mobile number"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                required
+              />
+            </div>
+            <small class="field-hint">Use the mobile number you registered with.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <div class="input-with-icon password-field">
+              <i class="fa-solid fa-lock"></i>
+              <input
+                type="password"
+                id="login-password"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+              <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-row-between">
+            <div class="form-remember">
+              <input type="checkbox" id="login-remember" />
+              <label for="login-remember">Remember me</label>
+            </div>
+            <a href="forgot.html" class="link-muted">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn-primary btn-block">
+            <span>Login</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+
+          <p class="auth-switch">
+            New to PashuAdhaar?
+            <a href="signup.html">Create an account</a>
+          </p>
+        </form>
+      </div>
+      <div class="auth-footer">
+        <span>© <span id="auth-year"></span> PashuAdhaar. All rights reserved.</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
