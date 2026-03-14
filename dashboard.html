@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body class="dashboard-body">
   <div class="app-shell">
@@ -27,40 +26,28 @@
       </div>
 
       <nav class="sidebar-nav">
-        <a href="#" class="sidebar-link active" data-section="overview">
-          <i class="fa-solid fa-grid-2"></i>
-          <span>Dashboard</span>
+        <a href="#" class="sidebar-link active" data-section="home">
+          <i class="fa-solid fa-house"></i>
+          <span data-i18n="nav.dashboard">Dashboard</span>
+        </a>
+        <a href="#" class="sidebar-link" data-section="add-animal">
+          <i class="fa-solid fa-plus-circle"></i>
+          <span data-i18n="nav.register">Add New Animal</span>
+        </a>
+        <a href="#" class="sidebar-link" data-section="my-animals">
+          <i class="fa-solid fa-paw"></i>
+          <span data-i18n="nav.database">My Animals</span>
         </a>
         <a href="index.html" class="sidebar-link">
-          <i class="fa-solid fa-cow"></i>
-          <span>AI Breed Classifier</span>
-        </a>
-        <a href="#" class="sidebar-link" data-section="register">
-          <i class="fa-solid fa-id-card-clip"></i>
-          <span>Register Animal</span>
-        </a>
-        <a href="#" class="sidebar-link" data-section="database">
-          <i class="fa-solid fa-database"></i>
-          <span>Animal Database</span>
-        </a>
-        <a href="#" class="sidebar-link" data-section="health">
-          <i class="fa-solid fa-briefcase-medical"></i>
-          <span>Health Records</span>
-        </a>
-        <a href="#" class="sidebar-link" data-section="pashu-search">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <span>Pashu Aadhar Search</span>
-        </a>
-        <a href="#" class="sidebar-link" data-section="settings">
-          <i class="fa-solid fa-gear"></i>
-          <span>Settings</span>
+          <i class="fa-solid fa-camera"></i>
+          <span data-i18n="nav.classifier">Identify Breed</span>
         </a>
       </nav>
 
       <div class="sidebar-footer">
         <button class="sidebar-logout" id="sidebar-logout">
           <i class="fa-solid fa-right-from-bracket"></i>
-          <span>Logout</span>
+          <span data-i18n="nav.logout">Logout</span>
         </button>
       </div>
     </aside>
@@ -74,24 +61,20 @@
             <span></span><span></span><span></span>
           </button>
           <div class="topbar-title">
-            <h1>Farm Overview</h1>
-            <p>Monitor your herd, health, and production in one place.</p>
+            <h1 data-i18n="topbar.title">Farm Overview</h1>
+            <p data-i18n="topbar.subtitle">Monitor your herd, health, and production in one place.</p>
           </div>
         </div>
 
         <div class="topbar-right">
-          <div class="topbar-search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="search" id="global-search" placeholder="Search animals, tags, or records..." />
+          <div id="lang-toggle" class="lang-toggle topbar-lang-toggle">
+            <button type="button" data-lang="en" class="lang-pill active">English</button>
+            <button type="button" data-lang="hi" class="lang-pill">हिन्दी</button>
           </div>
-          <button class="icon-button" id="notifications-btn" aria-label="Notifications">
-            <i class="fa-regular fa-bell"></i>
-            <span class="badge-dot"></span>
-          </button>
           <div class="topbar-user">
             <div class="user-info">
               <span class="user-name" id="user-name">Farmer</span>
-              <span class="user-role">Farm Admin</span>
+              <span class="user-role">farm Admin</span>
             </div>
             <div class="user-avatar">
               <span id="user-avatar-initials">FA</span>
@@ -102,204 +85,133 @@
 
       <!-- Content -->
       <main class="content">
-        <!-- Stats cards -->
-        <section class="dashboard-section">
+        <!-- Simple home with three main actions -->
+        <section class="dashboard-section" id="section-home">
           <div class="section-header">
-            <h2>Key metrics</h2>
-            <p>Live snapshot of your herd and production.</p>
+            <h2 data-i18n="home.title">Dashboard</h2>
+            <p data-i18n="home.subtitle">Choose one simple action below.</p>
           </div>
-          <div class="grid grid-4">
-            <div class="stat-card accent-green">
-              <div class="stat-header">
-                <span class="stat-label">Total Animals</span>
-                <i class="fa-solid fa-cow"></i>
+          <div class="grid home-grid">
+            <button class="card action-card" id="action-identify">
+              <div class="action-icon gradient-green">
+                <i class="fa-solid fa-camera"></i>
               </div>
-              <div class="stat-value" id="stat-total-animals">326</div>
-              <div class="stat-footer">
-                <span class="stat-badge positive"><i class="fa-solid fa-arrow-up"></i> +4.2%</span>
-                <span class="stat-caption">vs last month</span>
+              <div class="action-body">
+                <h3 data-i18n="home.identify.title">Identify Animal Breed</h3>
+                <p data-i18n="home.identify.text">Upload photo • See breed</p>
               </div>
-            </div>
-
-            <div class="stat-card accent-blue">
-              <div class="stat-header">
-                <span class="stat-label">Vaccinated Animals</span>
-                <i class="fa-solid fa-syringe"></i>
+            </button>
+            <button class="card action-card" id="action-add">
+              <div class="action-icon gradient-blue">
+                <i class="fa-solid fa-plus-circle"></i>
               </div>
-              <div class="stat-value" id="stat-vaccinated">291</div>
-              <div class="stat-footer">
-                <span class="stat-badge neutral"><i class="fa-solid fa-shield-heart"></i> 89%</span>
-                <span class="stat-caption">coverage this month</span>
+              <div class="action-body">
+                <h3 data-i18n="home.add.title">Add New Animal</h3>
+                <p data-i18n="home.add.text">Few simple details</p>
               </div>
-            </div>
-
-            <div class="stat-card accent-amber">
-              <div class="stat-header">
-                <span class="stat-label">Breeding Animals</span>
-                <i class="fa-solid fa-venus-mars"></i>
+            </button>
+            <button class="card action-card" id="action-list">
+              <div class="action-icon gradient-amber">
+                <i class="fa-solid fa-paw"></i>
               </div>
-              <div class="stat-value" id="stat-breeding">54</div>
-              <div class="stat-footer">
-                <span class="stat-badge positive"><i class="fa-solid fa-arrow-up"></i> +8</span>
-                <span class="stat-caption">active breeding</span>
+              <div class="action-body">
+                <h3 data-i18n="home.list.title">My Animals</h3>
+                <p data-i18n="home.list.text">See all animals</p>
               </div>
-            </div>
-
-            <div class="stat-card accent-purple">
-              <div class="stat-header">
-                <span class="stat-label">Newborn Calves</span>
-                <i class="fa-solid fa-baby"></i>
-              </div>
-              <div class="stat-value" id="stat-calves">17</div>
-              <div class="stat-footer">
-                <span class="stat-badge positive"><i class="fa-solid fa-arrow-up"></i> +3</span>
-                <span class="stat-caption">in last 7 days</span>
-              </div>
-            </div>
+            </button>
           </div>
         </section>
 
-        <!-- Charts -->
-        <section class="dashboard-section">
+        <!-- Add Animal -->
+        <section class="dashboard-section hidden" id="section-add-animal">
           <div class="section-header">
-            <h2>Analytics</h2>
-            <p>Understand trends across your herd.</p>
-          </div>
-          <div class="grid grid-2">
-            <div class="card chart-card">
-              <div class="card-header">
-                <h3>Animal population</h3>
-                <span class="chip">Last 12 months</span>
-              </div>
-              <canvas id="animalPopulationChart"></canvas>
-            </div>
-
-            <div class="card chart-card">
-              <div class="card-header">
-                <h3>Milk production</h3>
-                <span class="chip chip-soft">Litres per day</span>
-              </div>
-              <canvas id="milkProductionChart"></canvas>
-            </div>
+            <h2 data-i18n="section.register.title">Add New Animal</h2>
+            <p data-i18n="section.register.subtitle">Few simple details only.</p>
           </div>
 
-          <div class="grid grid-2">
-            <div class="card chart-card">
-              <div class="card-header">
-                <h3>Vaccination progress</h3>
-                <span class="chip chip-soft">Coverage</span>
-              </div>
-              <canvas id="vaccinationProgressChart"></canvas>
-            </div>
-
-            <!-- Feature cards -->
-            <div class="card feature-stack">
-              <div class="feature-card">
-                <div class="feature-icon gradient-green">
-                  <i class="fa-solid fa-robot"></i>
-                </div>
-                <div class="feature-body">
-                  <h3>AI Breed Classifier</h3>
-                  <p>Upload an animal image to automatically identify its breed using AI.</p>
-                  <button class="btn-ghost" id="open-classifier-btn">
-                    Open classifier
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <div class="card">
+            <form id="animal-form" class="register-form">
+              <div class="form-group">
+                <label data-i18n="form.animal.type.label">Animal Type</label>
+                <div class="type-pill-row">
+                  <button type="button" class="type-pill active" data-type="Cow">
+                    🐄 <span data-i18n="form.animal.type.cow">Cow</span>
+                  </button>
+                  <button type="button" class="type-pill" data-type="Buffalo">
+                    🐃 <span data-i18n="form.animal.type.buffalo">Buffalo</span>
+                  </button>
+                  <button type="button" class="type-pill" data-type="Goat">
+                    🐐 <span data-i18n="form.animal.type.goat">Goat</span>
                   </button>
                 </div>
               </div>
 
-              <div class="feature-card">
-                <div class="feature-icon gradient-blue">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <div class="feature-body">
-                  <h3>Pashu Aadhar Tag Search</h3>
-                  <p>Quickly look up animal details by their 12-digit Pashu Aadhar tag.</p>
-                  <div class="mini-search">
-                    <div class="input-with-icon">
-                      <i class="fa-solid fa-hashtag"></i>
-                      <input
-                        type="text"
-                        id="dashboard-tag-id"
-                        placeholder="Enter 12-digit tag ID"
-                        maxlength="12"
-                      />
-                    </div>
-                    <button class="btn-secondary" id="dashboard-tag-search-btn">
-                      Search
-                    </button>
-                  </div>
-                  <div class="mini-search-result" id="dashboard-tag-result"></div>
+              <div class="form-group icon-field">
+                <label data-i18n="form.animal.age.label">Age</label>
+                <div class="input-with-icon">
+                  <i class="fa-solid fa-hourglass-half"></i>
+                  <input
+                    type="number"
+                    id="animalAge"
+                    min="0"
+                    step="1"
+                    data-i18n="form.animal.age.placeholder"
+                    placeholder="Age in years"
+                  />
                 </div>
               </div>
-            </div>
+
+              <div class="form-group">
+                <label data-i18n="form.animal.status.label">Status</label>
+                <div class="status-pill-row">
+                  <button type="button" class="status-pill active" data-status="Normal">
+                    <span class="status-emoji">✅</span>
+                    <span data-i18n="form.animal.status.normal">Normal</span>
+                  </button>
+                  <button type="button" class="status-pill" data-status="Vaccinated">
+                    <span class="status-emoji">💉</span>
+                    <span data-i18n="form.animal.status.vaccinated">Vaccinated</span>
+                  </button>
+                  <button type="button" class="status-pill" data-status="Breeding">
+                    <span class="status-emoji">❤️</span>
+                    <span data-i18n="form.animal.status.breeding">Breeding</span>
+                  </button>
+                  <button type="button" class="status-pill" data-status="Newborn">
+                    <span class="status-emoji">🐄</span>
+                    <span data-i18n="form.animal.status.newborn">Newborn</span>
+                  </button>
+                </div>
+              </div>
+
+              <button type="button" id="addAnimalBtn" class="btn-primary btn-block">
+                <span data-i18n="form.animal.addButton">Save Animal</span>
+              </button>
+            </form>
           </div>
         </section>
 
-        <!-- Placeholder sections for other navigation items -->
-        <section class="dashboard-section hidden" id="section-register">
+        <!-- My Animals -->
+        <section class="dashboard-section hidden" id="section-my-animals">
           <div class="section-header">
-            <h2>Register Animal</h2>
-            <p>Structured registration flow for new animals (coming soon).</p>
+            <h2 data-i18n="section.database.title">My Animals</h2>
+            <p data-i18n="section.database.subtitle">Simple list of animals you added.</p>
           </div>
-          <div class="card placeholder-card">
-            <p>This section will let you register new animals with Pashu Aadhar tags, lineage, and farm details.</p>
-          </div>
-        </section>
-
-        <section class="dashboard-section hidden" id="section-database">
-          <div class="section-header">
-            <h2>Animal Database</h2>
-            <p>Centralized directory of all tagged animals (coming soon).</p>
-          </div>
-          <div class="card placeholder-card">
-            <p>Filter by breed, age, health status, and more.</p>
-          </div>
-        </section>
-
-        <section class="dashboard-section hidden" id="section-health">
-          <div class="section-header">
-            <h2>Health Records</h2>
-            <p>Digital health passports and vaccination logs (coming soon).</p>
-          </div>
-          <div class="card placeholder-card">
-            <p>Track diseases, treatments, vaccinations and vet visits for each animal.</p>
-          </div>
-        </section>
-
-        <section class="dashboard-section hidden" id="section-pashu-search">
-          <div class="section-header">
-            <h2>Pashu Aadhar Search</h2>
-            <p>Search and review detailed animal identity information.</p>
-          </div>
-          <div class="card pashu-search-card">
-            <div class="form-group">
-              <label for="section-tag-id">Pashu Aadhar Tag ID</label>
-              <div class="input-with-icon">
-                <i class="fa-solid fa-hashtag"></i>
-                <input
-                  type="text"
-                  id="section-tag-id"
-                  placeholder="Enter 12-digit Pashu Aadhar tag"
-                  maxlength="12"
-                />
+          <div class="card">
+            <div class="animal-summary-row">
+              <div class="summary-item">
+                <span class="summary-label" data-i18n="summary.total">Total</span>
+                <span class="summary-value" id="summary-total">0</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label" data-i18n="summary.vaccinated">Vaccinated</span>
+                <span class="summary-value" id="summary-vaccinated">0</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label" data-i18n="summary.newborn">Newborn</span>
+                <span class="summary-value" id="summary-newborn">0</span>
               </div>
             </div>
-            <button class="btn-primary" id="section-tag-search-btn">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              Search tag
-            </button>
-            <div class="pashu-search-result" id="section-tag-result"></div>
-          </div>
-        </section>
-
-        <section class="dashboard-section hidden" id="section-settings">
-          <div class="section-header">
-            <h2>Settings</h2>
-            <p>Configure your farm profile and preferences.</p>
-          </div>
-          <div class="card placeholder-card">
-            <p>Update profile information, notification settings, and AI preferences here.</p>
+            <div id="animals-list" class="animal-list"></div>
           </div>
         </section>
       </main>
@@ -309,6 +221,10 @@
   <!-- Toast -->
   <div class="toast" id="toast"></div>
 
+  <script src="js/language.js"></script>
   <script src="js/dashboard.js"></script>
+  <script src="js/animal-manager.js"></script>
 </body>
 </html>
+
+   
