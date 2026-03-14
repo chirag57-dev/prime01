@@ -29,70 +29,93 @@
     <div class="auth-panel">
       <div class="auth-panel-inner">
         <div class="auth-header">
-          <h2>Welcome back 👋</h2>
-          <p>Log in to manage your farm dashboard.</p>
+          <h2 data-i18n="auth.welcome">Welcome 👋</h2>
+          <p data-i18n="auth.subtitle">Login with your mobile number.</p>
         </div>
 
-        <form id="login-form" class="auth-form">
+        <div class="auth-language-row">
+          <div id="lang-toggle" class="lang-toggle">
+            <button type="button" data-lang="en" class="lang-pill active">English</button>
+            <button type="button" data-lang="hi" class="lang-pill">हिन्दी</button>
+          </div>
+        </div>
+
+        <form id="login-form" class="auth-form auth-form-otp">
           <div class="form-group">
-            <label for="login-mobile">Mobile Number</label>
+            <label for="login-mobile" data-i18n="auth.mobile.label">Mobile Number</label>
             <div class="input-with-icon">
               <i class="fa-solid fa-mobile-screen-button"></i>
               <input
                 type="tel"
                 id="login-mobile"
                 name="mobile"
+                data-i18n="auth.mobile.placeholder"
                 placeholder="10-digit mobile number"
                 pattern="[0-9]{10}"
                 maxlength="10"
                 required
               />
             </div>
-            <small class="field-hint">Use the mobile number you registered with.</small>
+            <small class="field-hint" data-i18n="auth.mobile.hint">
+              Enter your mobile number linked with your animals.
+            </small>
           </div>
 
-          <div class="form-group">
-            <label for="login-password">Password</label>
-            <div class="input-with-icon password-field">
-              <i class="fa-solid fa-lock"></i>
+          <div class="form-group otp-group hidden" id="otp-group">
+            <label for="login-otp" data-i18n="auth.otp.label">Enter OTP</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-key"></i>
               <input
-                type="password"
-                id="login-password"
-                name="password"
-                placeholder="Enter your password"
-                required
+                type="tel"
+                id="login-otp"
+                name="otp"
+                maxlength="4"
+                pattern="[0-9]{4}"
+                data-i18n="auth.otp.placeholder"
+                placeholder="4-digit code"
               />
-              <button type="button" class="password-toggle" aria-label="Toggle password visibility">
-                <i class="fa-regular fa-eye"></i>
-              </button>
+            </div>
+            <small class="field-hint" data-i18n="auth.otp.hint">
+              We have sent a 4-digit code to your phone.
+            </small>
+          </div>
+
+          <div class="auth-steps">
+            <div class="auth-step">
+              <span class="auth-step-title" data-i18n="auth.step1.title">Step 1</span>
+              <span class="auth-step-text" data-i18n="auth.step1.text">
+                Type your mobile number and tap Get OTP.
+              </span>
+            </div>
+            <div class="auth-step">
+              <span class="auth-step-title" data-i18n="auth.step2.title">Step 2</span>
+              <span class="auth-step-text" data-i18n="auth.step2.text">
+                Enter the OTP from SMS to login.
+              </span>
             </div>
           </div>
 
-          <div class="form-row-between">
-            <div class="form-remember">
-              <input type="checkbox" id="login-remember" />
-              <label for="login-remember">Remember me</label>
-            </div>
-            <a href="forgot.html" class="link-muted">Forgot password?</a>
+          <div class="auth-actions">
+            <button type="button" class="btn-secondary btn-block" id="send-otp-btn">
+              <span data-i18n="auth.sendOtp">Get OTP</span>
+            </button>
+            <button type="submit" class="btn-primary btn-block" id="login-submit-btn">
+              <span data-i18n="auth.verifyOtp">Login</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
           </div>
-
-          <button type="submit" class="btn-primary btn-block">
-            <span>Login</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </button>
-
-          <p class="auth-switch">
-            New to PashuAdhaar?
-            <a href="signup.html">Create an account</a>
-          </p>
         </form>
       </div>
       <div class="auth-footer">
-        <span>© <span id="auth-year"></span> PashuAdhaar. All rights reserved.</span>
+        <span
+          >© <span id="auth-year"></span>
+          <span data-i18n="auth.footer">PashuAdhaar. All rights reserved.</span></span
+        >
       </div>
     </div>
   </div>
 
-  <script src="js/auth.js"></script>
+  <script src="js/language.js"></script>
+  <script src="js/otp-auth.js"></script>
 </body>
 </html>
