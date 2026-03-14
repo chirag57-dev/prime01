@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>PashuAdhaar – AI Breed Classifier</title>
+  <title>PashuAdhaar – Identify Breed</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 <body class="classifier-body">
   <script>
@@ -19,20 +20,26 @@
       <div class="classifier-brand">
         <span class="logo-icon">🐄</span>
         <div>
-          <h1>PashuAdhaar</h1>
-          <p>AI Breed Classifier & Pashu Aadhar Search</p>
+          <h1 data-i18n="app.title">PashuAdhaar</h1>
+          <p data-i18n="classifier.subtitle">Upload photo • See animal breed</p>
         </div>
       </div>
-      <button class="btn-ghost small" onclick="window.location.href='dashboard.html'">
-        <i class="fa-solid fa-grid-2"></i>
-        Back to Dashboard
-      </button>
+      <div class="classifier-header-right">
+        <div id="lang-toggle" class="lang-toggle">
+          <button type="button" data-lang="en" class="lang-pill active">English</button>
+          <button type="button" data-lang="hi" class="lang-pill">हिन्दी</button>
+        </div>
+        <button class="btn-ghost small" onclick="window.location.href='dashboard.html'">
+          <i class="fa-solid fa-grid-2"></i>
+          <span data-i18n="classifier.back">Back to Dashboard</span>
+        </button>
+      </div>
     </header>
 
     <main class="classifier-main card">
       <section class="classifier-section">
-        <h2>Breed Classification</h2>
-        <p class="section-subtitle">Upload an animal image to identify the breed using our AI model.</p>
+        <h2 data-i18n="classifier.title">Identify Animal Breed</h2>
+        <p class="section-subtitle" data-i18n="classifier.text">Upload one clear photo of the animal.</p>
 
         <div id="upload-area" class="upload-area">
           <img id="image-preview" class="image-preview" src="#" alt="Image Preview" />
@@ -42,54 +49,31 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
-            <p><strong>Drag & Drop</strong> an image here</p>
-            <p class="small-text">or</p>
+            <p data-i18n="classifier.drag"><strong>Drag & Drop</strong> photo here</p>
+            <p class="small-text" data-i18n="classifier.or">or</p>
             <button type="button" class="upload-button" onclick="document.getElementById('file-input').click()">
-              Browse Files
+              <span data-i18n="classifier.browse">Upload Animal Image</span>
             </button>
           </div>
           <input type="file" id="file-input" accept="image/*" hidden />
         </div>
 
         <div id="result-area" class="result-area hidden">
-          <div class="spinner"></div>
+          <div class="spinner" id="classifier-spinner"></div>
           <div id="result-text" class="result-text"></div>
         </div>
 
-        <button id="reset-button" class="reset-button hidden">Upload Another Image</button>
-      </section>
-
-      <hr class="separator" />
-
-      <section class="classifier-section">
-        <h2>Pashu Aadhar Search</h2>
-        <p class="section-subtitle">Look up complete animal details by tag ID.</p>
-
-        <div class="aadhar-search-area">
-          <input
-            type="text"
-            id="tag-id-input"
-            placeholder="Enter 12-digit Pashu Aadhar Tag ID"
-            maxlength="12"
-          />
-          <button id="search-button" class="upload-button">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            Search Data
-          </button>
-          <div id="aadhar-result-area" class="result-area hidden">
-            <div id="aadhar-spinner" class="spinner"></div>
-            <div id="aadhar-result-text" class="result-text"></div>
-          </div>
-        </div>
+        <button id="reset-button" class="reset-button hidden" data-i18n="classifier.again">Upload Another Image</button>
       </section>
     </main>
 
     <footer class="classifier-footer">
-      <p>Powered by AI • PashuAdhaar Identity System</p>
+      <p data-i18n="classifier.footer">Powered by AI • PashuAdhaar Identity System</p>
     </footer>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" defer></script>
-  <script src="script.js"></script>
+  <script src="js/language.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
